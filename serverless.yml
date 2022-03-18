@@ -13,8 +13,8 @@
 
 service: learning-serverless-basics
 # app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+app: learning-serverless-basics
+org: kumasagati
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -26,6 +26,8 @@ provider:
   profile: aws-personal-1
   region: us-east-2
 
+plugins:
+  - serverless-offline
 # you can overwrite defaults here
 #  stage: dev
 
@@ -73,6 +75,15 @@ functions:
             parameters:
               paths:
                 id: true
+
+  createUser:
+    handler: handler.createUser
+    events:
+      - http:
+          method: post
+          path: /user
+
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

@@ -22,11 +22,27 @@ module.exports.helloUser = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message:'Hello User!',
+        message:'Hello New User!',
         input: event,
       },
       null,
       2
     ),
   };
+};
+
+module.exports.createUser = async ({ body }) => {
+    const { name } = JSON.parse(body);
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify(
+            {
+                message:'Hello New User!',
+                input: `Hello, ${name}`,
+            },
+            null,
+            2
+        ),
+    };
 };
